@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <script>
+  function q(selector) {return document.querySelector(selector)}
+  
+  $(function(){
+    $("#button").click(function(){
+        // 텍스트 빈 값 확인
+        if(!document.sentMessage.text.value){
+          alert("내용을 입력하세요");
+          document.sentMessage.text.focus()
+          return false
+        }
+          // Synthesize 처리과정 노출
+          text = q('#text').value.trim()
+          if (text) {
+            q('#message').textContent = 'Synthesizing...'
+            q('#button').disabled = true
+            q('#audio').hidden = true
+          }
+
+        // 텍스트 값 전달
+        $.ajax({
+          url : "{% url 'tts:synthesize' %}",
+          datatype :"text",
+          type :"POST",
+          data : {"text":$("#text").val()},
+          success : function(result){
+              
+              audio = result["audio"] 
+              //console.log(audio);
+              //alert(audio);
+              q('#audio').hidden = false
+              q('#audio').src = audio
+          }
+        }); 
+    });
+  });
+
+  </script>
+
+  <title>Brain Mining_TextToSpeech</title>
+
+  <!-- Bootstrap core CSS -->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+  <!-- Custom fonts for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/magnific-popup/magnific-popup.css' %}"> 
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/freelancer.min.css' %}"> 
+
+</head>
+
+<body id="page-top">
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">BrainMining</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">TextToVoice</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">TensorBoard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container">
+      <img class="img-fluid mb-5 d-block mx-auto" src="{% static 'img/profile.png' %}" alt="">
+      <h1 class="text-uppercase mb-0">Text To Speech</h1>
+      <hr class="star-light">
+    </div>
+  </header>
+
+  <!-- TextToVoice Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Text To Voice</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+          <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+          <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
+          {% csrf_token %}
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>내용을 입력해주세요</label>
+                <textarea class="form-control" name='text' id="text" rows="7" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-xl" id="button" name="synthesize">Synthesize</button>
+            </div>
+          </form>
+          <p id="message"></p>
+          <audio id="audio" controls autoplay hidden>
+          {% comment %} <source src='{%static "audio/test.wav" %}'>  {% endcomment %}
+          </audio>
+          {% comment %} <audio id="audio" src="{% static 'audio/test.wav' %}"></audio> {% endcomment %}
+
+          {% comment %} <audio id="audio" controls autoplay hidden></audio> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TensorBoard Section -->
+  <section class="bg-primary text-white mb-0" id="about">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-white">TensorBoard</h2>
+      <hr class="star-light mb-5">
+      <div class="row">
+        <div class="img-fluid mb-5 d-block mx-auto">
+          <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+            <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+              <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
+          </a>
+        </div>  
+    </div>
+  </section>
+
+  <div class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Your Website 2019</small>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div> 
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %} "></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script> 
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/freelancer.min.js' %}"></script> 
+
+</body>
+
+</html>
