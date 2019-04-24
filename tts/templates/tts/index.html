@@ -56,10 +56,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">TextToVoice</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#audiostore">audiostore</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">TensorBoard</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#texttovoice">texttovoice</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#soundwave">soundwave</a>
           </li>
         </ul>
       </div>
@@ -75,8 +78,78 @@
     </div>
   </header>
 
+  <!-- AudioStore Section -->
+  <section class="audiostore" id="audiostore">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">audio store</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-1">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/cabin.png' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-2">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/cake.png' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-3">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/circus.png' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-4">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/game.png' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-5">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/safe.png' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-6">
+            <div class="audiostore-item-caption d-flex position-absolute h-100 w-100">
+              <div class="audiostore-item-caption-content my-auto w-100 text-center text-white">
+                <i class="fas fa-search-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="{% static 'img/audiostore/submarine.png' %}" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TextToVoice Section -->
-  <section class="portfolio" id="portfolio">
+  <section class="audiostore" id="texttovoice">
     <div class="container">
       <h2 class="text-center text-uppercase text-secondary mb-0">Text To Voice</h2>
       <hr class="star-dark mb-5">
@@ -101,24 +174,19 @@
           </form>
           <p id="message"></p>
           <audio id="audio" controls autoplay hidden>
-          {% comment %} <source src='{%static "audio/test.wav" %}'>  {% endcomment %}
           </audio>
-          {% comment %} <audio id="audio" src="{% static 'audio/test.wav' %}"></audio> {% endcomment %}
-
-          {% comment %} <audio id="audio" controls autoplay hidden></audio> {% endcomment %}
         </div>
       </div>
     </div>
   </section>
 
   <!-- TensorBoard Section -->
-  <section class="bg-primary text-white mb-0" id="about">
+  <section class="bg-primary text-white mb-0" id="soundwave">
     <div class="container">
-      <h2 class="text-center text-uppercase text-white">TensorBoard</h2>
+      <h2 class="text-center text-uppercase text-white">sound wave</h2>
       <hr class="star-light mb-5">
       <div class="row">
         <div class="img-fluid mb-5 d-block mx-auto">
-              {% comment %} <i class="fas fa-search-plus fa-3x"></i> {% endcomment %}
             <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
           
         </div>  
@@ -137,5 +205,140 @@
       <i class="fas fa-angle-up aa"></i>
     </a>
   </div> 
+
+ <!-- audiostore Modals -->
+
+  <!-- audiostore Modal 1 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-1">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/cabin.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- audiostore Modal 2 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-2">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/cake.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- audiostore Modal 3 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-3">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/circus.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- audiostore Modal 4 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-4">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/game.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- audiostore Modal 5 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-5">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/safe.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- audiostore Modal 6 -->
+  <div class="audiostore-modal mfp-hide" id="audiostore-modal-6">
+    <div class="audiostore-modal-dialog bg-white">
+      <a class="close-button d-none d-md-block audiostore-modal-dismiss" href="#">
+        <i class="fa fa-3x fa-times"></i>
+      </a>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+            <hr class="star-dark mb-5">
+            <img class="img-fluid mb-5" src="{% static 'img/audiostore/submarine.png' %}" alt="">
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+            <a class="btn btn-primary btn-lg rounded-pill audiostore-modal-dismiss" href="#">
+              <i class="fa fa-close"></i>
+              Close Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
