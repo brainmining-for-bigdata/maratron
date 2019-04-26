@@ -13,9 +13,6 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
   <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  {% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/webfonts/fa-solid-900.ttf">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/webfonts/fa-solid-900.woff">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/webfonts/fa-solid-900.woff2"> {% endcomment %}
   
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
@@ -159,12 +156,16 @@
           <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
           <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
           {% csrf_token %}
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <div >
+              {% comment %} <div class="form-group floating-label-form-group controls mb-0 pb-2"> {% endcomment %}
+              <div class="voice">
+                <input type="button" class="voiceChoice" id="male" name="gender" />
+                <input type="button" class="voiceChoice" id="female" name="gender"/> 
+              </div>  
                 <label>내용을 입력해주세요</label>
                 <textarea class="form-control" name='text' id="text" rows="7" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                 <p class="help-block text-danger"></p>
-              </div>
+              {% comment %} </div> {% endcomment %}
             </div>
             <br>
             <div id="success"></div>
