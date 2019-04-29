@@ -4,7 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.serializers import serialize
 from django.http import HttpResponse
 import librosa as lr
-from eval import eval_text
+from eval import eval_text, eval_init
+
+eval_init(checkpoint_file = 'model.ckpt-40000', log_dir  = 'LJlogs-tacotron')
 
 def index(request):
     #print("index.......")

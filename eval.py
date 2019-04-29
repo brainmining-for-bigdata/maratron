@@ -18,18 +18,17 @@ sentences = [
   'Talib Kweli confirmed to AllHipHop that he will be releasing an album in the next year.',
 ]
 base_dir = os.getcwd()
-log_dir  = 'LJlogs-tacotron'
-checkpoint_file = 'model.ckpt-40000'
 static_path = 'static'
 audio_path = 'audio'
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-hparams.parse('')
-checkpoint = os.path.join(base_dir, log_dir, checkpoint_file)
-print(checkpoint)
-print(hparams_debug_string())
 synth = Synthesizer()
-synth.load(checkpoint)
+
+def eval_init(checkpoint_file = 'model.ckpt-40000', log_dir  = 'LJlogs-tacotron') :
+  os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+  hparams.parse('')
+  checkpoint = os.path.join(base_dir, log_dir, checkpoint_file)
+  print(checkpoint)
+  print(hparams_debug_string())
+  synth.load(checkpoint)
 
 def eval_text(text):
   file_path = 'output.wav'
