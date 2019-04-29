@@ -24,9 +24,12 @@ class Synthesizer:
     print('Loading checkpoint: %s' % checkpoint_path)
     self.session = tf.Session()
     self.session.run(tf.global_variables_initializer())
-    saver = tf.train.Saver()
-    saver.restore(self.session, checkpoint_path)
+    self.saver = tf.train.Saver()
+    self.saver.restore(self.session, checkpoint_path)
 
+  def reload(self, checkpoint_path, model_name='tacotron'):
+    #print('Loading checkpoint: %s' % checkpoint_path)
+    self.saver.restore(self.session, checkpoint_path)
 
   def synthesize(self, text):
     cleaner_names = [x.strip() for x in hparams.cleaners.split(',')]

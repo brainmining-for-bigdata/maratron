@@ -30,11 +30,20 @@ print(checkpoint)
 print(hparams_debug_string())
 synth = Synthesizer()
 synth.load(checkpoint)
+checkpoint_1 = os.path.join(base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+checkpoint_2 = os.path.join(base_dir, 'california-12-logs', 'model.ckpt-112000')
 
-def eval_text(text):
+
+def eval_text(text, voice_choice):
   file_path = 'output.wav'
   path = os.path.join(base_dir, static_path, audio_path, file_path)
   print('Synthesizing: %s' % path)
+  print ('voice changed to  ', voice_choice) 
+  if (voice_choice == 1) :
+    synth.reload(checkpoint_1)
+  else :
+    synth.reload(checkpoint_2)
+
   with open(path, 'wb') as f:
     f.write(synth.synthesize(text))
   return file_path

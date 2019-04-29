@@ -18,9 +18,12 @@ def synthesize(request):
     voiceType = request.POST['voiceType'].strip()
     print(text)
     print(voiceType)
+    voice_choice = 1  # default == female 
+    if (voiceType == 'male') : 
+        voice_choice = 2
 
     path_dir = '/static/audio/'
-    audio_file = path_dir + eval_text(text)
+    audio_file = path_dir + eval_text(text, voice_choice)
     print(audio_file)
     audio = {"audio":audio_file}
     audio = json.dumps(audio)
