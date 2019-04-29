@@ -15,7 +15,9 @@ def index(request):
 def synthesize(request):
     print("view 도착")
     text = request.POST['text'].strip()
+    voiceType = request.POST['voiceType'].strip()
     print(text)
+    print(voiceType)
 
     path_dir = '/static/audio/'
     audio_file = path_dir + eval_text(text)
