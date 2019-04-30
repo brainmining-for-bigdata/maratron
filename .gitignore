@@ -191,6 +191,7 @@ dmypy.json
 *.npy
 LJlogs-tacotron/
 .vscode/
+california-12-logs/
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/django,python
