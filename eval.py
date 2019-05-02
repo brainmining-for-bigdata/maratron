@@ -17,36 +17,35 @@ sentences = [
   'Does the quick brown fox jump over the lazy dog?',
   'Talib Kweli confirmed to AllHipHop that he will be releasing an album in the next year.',
 ]
-base_dir = os.getcwd()
-log_dir  = 'LJlogs-tacotron'
-checkpoint_file = 'model.ckpt-40000'
-static_path = 'static'
-audio_path = 'audio'
+class Eval :
+  def init(self):
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+    hparams.parse('')
+    print(hparams_debug_string())
+    self.voice_choice = 1 # female default
+    self.base_dir = os.getcwd()
+    checkpoint = os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+    self.output_path = os.path.join (self.base_dir, 'static', 'audio', 'output.wav')
+    self.synth = Synthesizer()
+    self.synth.load(checkpoint)
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-hparams.parse('')
-checkpoint = os.path.join(base_dir, log_dir, checkpoint_file)
-print(checkpoint)
-print(hparams_debug_string())
-synth = Synthesizer()
-synth.load(checkpoint)
-checkpoint_1 = os.path.join(base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
-checkpoint_2 = os.path.join(base_dir, 'california-12-logs', 'model.ckpt-112000')
+  def reload_checkpoint(self, voice_choice) :
+    if voice_choice ==1 :
+      checkpoint= os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+    else :
+      checkpoint = os.path.join(self.base_dir, 'california-12-logs', 'model.ckpt-112000')
+    self.voice_choice = voice_choice
+    print ('Synthesizing: %s' % checkpoint)
+    self.synth.reload(checkpoint)
+    
 
-
-def eval_text(text, voice_choice):
-  file_path = 'output.wav'
-  path = os.path.join(base_dir, static_path, audio_path, file_path)
-  print('Synthesizing: %s' % path)
-  print ('voice changed to  ', voice_choice) 
-  if (voice_choice == 1) :
-    synth.reload(checkpoint_1)
-  else :
-    synth.reload(checkpoint_2)
-
-  with open(path, 'wb') as f:
-    f.write(synth.synthesize(text))
-  return file_path
+  def text(self, text, voice_choice):
+    print ('voice changed to  ', voice_choice)
+    if self.voice_choice != voice_choice : 
+      self.reload_checkpoint (voice_choice)
+    with open(self.output_path, 'wb') as f:
+      f.write(self.synth.synthesize(text))
+    return os.path.basename(self.output_path)
 
 def get_output_base_path(checkpoint_path):
   base_dir = os.path.dirname(checkpoint_path)
