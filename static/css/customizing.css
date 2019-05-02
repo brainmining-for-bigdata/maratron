@@ -49,3 +49,92 @@
     cursor: pointer;
     outline: none ;
 }
+
+/* CSS for SOUND WAVE */
+
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    font-size: 39px;
+    line-height: 1.33;
+    padding-left: 2px;
+    padding-bottom: 5px;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 2px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.btn-orange {
+    background: #f60; 
+    /* background: #fcbc02; */
+    color: #fff;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: white;
+}
+
+.ptext {
+    padding-left: 20px;
+}
+
+.ptext p {
+    font-size: 19px;
+    color: grey;
+}
+
+.heading {
+    border: 1px solid #dee2e6;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: gray;  
+    background-color: white;
+}
+
+.btn-wrapper {
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+#audio-time, #audio-time2 {
+    color: gray;
+    padding-top: 30px;
+    padding-left: 0px; 
+    font-weight: bold;
+    font-size: 50px;
+}
+
+
+#wave-spectrogram{
+    margin: 10px auto;
+    position: relative;
+  }
+
+#wave-spectrogram canvas{
+    left: 0;
+  }
+  
+#specLabels{
+      position: absolute!important;
+  }
+
+.wave {
+    width: 87%;
+}
+  
