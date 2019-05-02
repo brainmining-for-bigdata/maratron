@@ -34,10 +34,14 @@
   <!-- Plugin JavaScript -->
   <script src="{% static 'js/jquery.easing.min.js' %}"></script>
   <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script> 
+  <!--
+  <script src="{% static 'js/wavesurfer.min.js' %}"></script> 
+  -->
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/main.js' %}"></script>
   <script src="{% static 'js/freelancer.js' %}"></script>
+  <script src="{% static 'js/button.js' %}"></script>
 </head>
 
 <body id="page-top">
@@ -53,13 +57,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#soundwave">soundwave</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#audiostore">audiostore</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#texttovoice">texttovoice</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#soundwave">soundwave</a>
           </li>
         </ul>
       </div>
@@ -75,11 +79,76 @@
     </div>
   </header>
 
-  <!-- AudioStore Section -->
-  <section class="audiostore" id="audiostore">
+  <!-- TensorBoard Section -->
+  <section class="mb-0" id="soundwave">
     <div class="container">
-      <h2 class="text-center text-uppercase text-secondary mb-0">audio store</h2>
+      <h2 class="text-center text-uppercase">sound wave</h2>
       <hr class="star-dark mb-5">
+      <div class="row">
+        <!--
+        <div class="img-fluid mb-5 d-block mx-auto">
+            <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
+        </div>
+        -->
+      </div>  
+    </div>
+    <br>
+    <br>
+    <div class="container border heading wave" style="border-bottom-width:0px;">
+        <h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-40000-audio.wav</h5>
+    </div>
+    <div class="container border hero wave">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1 btn-wrapper">
+            <button type="button" class="btn btn-xl btn-orange btn-circle toggler" id="btn-play" value="Play" onclick="Spectrum.playPause();">
+              <i class="fa fa-play" id="icon"></i>
+            </button>
+          </div>
+          <div class="col-md-10" id="audio-spectrum"></div>
+          <div class="col-md-1" id="audio-time"></div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="container">
+        <div class='ptext'>
+          <p>"오디오 샘플 텍스트 내용"</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container border heading wave" style="border-bottom-width:0px;">
+        <h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-13000-audio.wav</h5>
+    </div>
+    <div class="container border hero wave">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1 btn-wrapper">
+            <button type="button" class="btn btn-xl btn-orange btn-circle toggler" id="btn-play2" value="Play" onclick="Spectrum2.playPause();">
+              <i class="fa fa-play" id="icon2"></i>
+            </button>
+          </div>
+          <div class="col-md-10" id="audio-spectrum2"></div>
+          <div class="col-md-1" id="audio-time2"></div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="container">
+        <div class='ptext'>
+          <p>"오디오 샘플 텍스트 내용"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- AudioStore Section -->
+  <section class="audiostore bg-primary text-white" id="audiostore">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-white mb-0">audio store</h2>
+      <hr class="star-light mb-5">
       <div class="row">
         <div class="col-md-6 col-lg-4">
           <a class="audiostore-item d-block mx-auto" href="#audiostore-modal-1">
@@ -181,18 +250,6 @@
     </div>
   </section>
 
-  <!-- TensorBoard Section -->
-  <section class="bg-primary text-white mb-0" id="soundwave">
-    <div class="container">
-      <h2 class="text-center text-uppercase text-white">sound wave</h2>
-      <hr class="star-light mb-5">
-      <div class="row">
-        <div class="img-fluid mb-5 d-block mx-auto">
-            <img class="img-fluid" src="{% static 'img/profile.png' %}" alt="">
-          
-        </div>  
-    </div>
-  </section>
 
   <div class="copyright py-4 text-center text-white">
     <div class="container">
@@ -340,6 +397,7 @@
       </div>
     </div>
   </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js"></script>
+<script src="{% static 'js/wave.js' %}"></script>
 </body>
 </html>
