@@ -7,6 +7,7 @@ from .helpers import TacoTestHelper, TacoTrainingHelper
 from .modules import encoder_cbhg, post_cbhg, prenet
 from .rnn_wrappers import DecoderPrenetWrapper, ConcatOutputAndAttentionWrapper
 
+from KoTextProcessing.HangulUtils import hangul_symbol_1,hangul_symbol_2,hangul_symbol_3,hangul_symbol_4,hangul_symbol_5
 
 
 class Tacotron():
@@ -36,15 +37,35 @@ class Tacotron():
       batch_size = tf.shape(inputs)[0]
       hp = self._hparams
 
-      # Embeddings
+      if hp.cleaners == 'korean_cleaners':
+        ### get symbol to create embedding lookup table
+        if hp.hangul_type == 1:
+            hangul_symbol = hangul_symbol_1
+        elif hp.hangul_type == 2:
+            hangul_symbol = hangul_symbol_2
+        elif hp.hangul_type == 3:
+            hangul_symbol = hangul_symbol_3
+        elif hp.hangul_type == 4:
+            hangul_symbol = hangul_symbol_4
+        else:
+            hangul_symbol = hangul_symbol_5
+
+
+      # Embeddings_Ko 
       embedding_table = tf.get_variable(
+          'inputs_embedding', [len(hangul_symbol), hp.embed_depth], dtype=tf.float32)
+      embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)
+      # print(embedded_inputs)
+
+      # Embeddings_Eng
+      '''embedding_table = tf.get_variable(
         'embedding', [len(symbols), hp.embed_depth], dtype=tf.float32,
         initializer=tf.truncated_normal_initializer(stddev=0.5))
-      embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)          # [N, T_in, embed_depth=256]
+      embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)  '''        
 
       # Encoder
-      prenet_outputs = prenet(embedded_inputs, is_training, hp.prenet_depths)    # [N, T_in, prenet_depths[-1]=128]
-      encoder_outputs = encoder_cbhg(prenet_outputs, input_lengths, is_training, # [N, T_in, encoder_depth=256]
+      prenet_outputs = prenet(embedded_inputs, is_training, hp.prenet_depths)    
+      encoder_outputs = encoder_cbhg(prenet_outputs, input_lengths, is_training, 
                                      hp.encoder_depth)
 
       # Attention

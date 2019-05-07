@@ -19,16 +19,17 @@ def build_from_path(in_dir, out_dir, num_workers=1, tqdm=lambda x: x):
     Returns:
       A list of tuples describing the training examples. This should be written to train.txt
   '''
-  
+  print('build_from_path.....')
   # We use ProcessPoolExecutor to parallelize across processes. This is just an optimization and you
   # can omit it and just call _process_utterance on each input if you want.
   executor = ProcessPoolExecutor(max_workers=num_workers)
   futures = []
   index = 0
-  with open(os.path.join(in_dir, 'metadata.csv'), encoding='utf-8') as f:
+  with open(os.path.join(in_dir, 'transcript.txt'), encoding='utf-8') as f:
     for line in f:
       parts = line.strip().split('|')
-      wav_path = os.path.join(in_dir, 'wavs', '%s.wav' % parts[0])
+      titlePart = parts[0].split('/')
+      wav_path = (os.path.join(in_dir, 'wavs', titlePart[1]))
       duration = librosa.get_duration(filename=wav_path)
       limit = 5* 20/1000*hparams.outputs_per_step*hparams.frame_shift_ms
       index += 1

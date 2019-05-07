@@ -6,7 +6,9 @@ import threading
 import time
 import traceback
 from text import cmudict, text_to_sequence
+from KoTextProcessing.HangulUtils import hangul_to_sequence
 from util.infolog import log
+from hparams import hparams
 
 
 _batches_per_group = 32
@@ -84,7 +86,8 @@ class DataFeeder(threading.Thread):
     n = self._hparams.batch_size
     r = self._hparams.outputs_per_step
     examples = [self._get_next_example() for i in range(n * _batches_per_group)]
-
+    
+    # print(examples, '...examples')
     # Bucket examples based on similar output sequence length for efficiency:
     examples.sort(key=lambda x: x[-1])
     batches = [examples[i:i+n] for i in range(0, len(examples), n)]
@@ -92,31 +95,39 @@ class DataFeeder(threading.Thread):
 
     log('Generated %d batches of size %d in %.03f sec' % (len(batches), n, time.time() - start))
     for batch in batches:
+      # print('batchstart...',batch,'...batchend')
+      # print(r, '...r')
       feed_dict = dict(zip(self._placeholders, _prepare_batch(batch, r)))
       self._session.run(self._enqueue_op, feed_dict=feed_dict)
 
 
   def _get_next_example(self):
-    '''Loads a single example (input, mel_target, linear_target, cost) from disk'''
-    if self._offset >= len(self._metadata):
-      self._offset = 0
-      random.shuffle(self._metadata)
-    meta = self._metadata[self._offset]
-    self._offset += 1
-
-    text = meta[3]
-    if self._cmudict and random.random() < _p_cmudict:
+      '''Loads a single example (input, mel_target, linear_target, cost) from disk'''
+      if self._offset >= len(self._metadata):
+        self._offset = 0
+        random.shuffle(self._metadata)
+      meta = self._metadata[self._offset]
+      self._offset += 1
+      
+      text = meta[3]
+      # print(meta[0],'...meta[0]')
+      # print(meta[1],'...meta[1]')
+      # print(meta[2],'...meta[2]')
+      # print(text,'...text_datafeeder')
+      # print(self._cleaner_names,'...self._cleaner_names')
+      # text = ' '.join([self._maybe_get_arpabet(word) for word in text.split(' ')])
+      '''if self._cmudict and random.random() < _p_cmudict:
       text = ' '.join([self._maybe_get_arpabet(word) for word in text.split(' ')])
-
-    input_data = np.asarray(text_to_sequence(text, self._cleaner_names), dtype=np.int32)
-    linear_target = np.load(os.path.join(self._datadir, meta[0]))
-    mel_target = np.load(os.path.join(self._datadir, meta[1]))
-    return (input_data, mel_target, linear_target, len(linear_target))
+      input_data = np.asarray(text_to_sequence(text, self._cleaner_names), dtype=np.int32)'''
+      input_data = np.asarray(hangul_to_sequence(hangul_text= text, hangul_type=hparams.hangul_type), dtype=np.int32)
+      linear_target = np.load(os.path.join(self._datadir, meta[0]))
+      mel_target = np.load(os.path.join(self._datadir, meta[1]))
+      return (input_data, mel_target, linear_target, len(linear_target))
 
 
   def _maybe_get_arpabet(self, word):
-    arpabet = self._cmudict.lookup(word)
-    return '{%s}' % arpabet[0] if arpabet is not None and random.random() < 0.5 else word
+      arpabet = self._cmudict.lookup(word)
+      return '{%s}' % arpabet[0] if arpabet is not None and random.random() < 0.5 else word
 
 
 def _prepare_batch(batch, outputs_per_step):
