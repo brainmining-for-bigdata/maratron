@@ -24,7 +24,7 @@ class Eval :
     print(hparams_debug_string())
     self.voice_choice = 1 # female default
     self.base_dir = os.getcwd()
-    checkpoint = os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+    checkpoint = os.path.join(self.base_dir, 'logs-tacotron-model', 'model.ckpt-64000')
     self.output_path = os.path.join (self.base_dir, 'static', 'audio', 'output.wav')
     self.synth = Synthesizer()
     self.synth.load(checkpoint)
