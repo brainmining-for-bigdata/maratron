@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
+# media 파일 연결위해
+from django.conf import settings  # settings.py에서 설정한 내용 import
+from django.conf.urls.static import static  # urlpatterns 연결위해
+
 urlpatterns = [
     path('', lambda aa : redirect("tts:index")),
     path('admin/', admin.site.urls),
     path('tts/', include('tts.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

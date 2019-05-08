@@ -3,7 +3,7 @@ $(function (){
   function q(selector) { return document.querySelector(selector)}
 
   var voiceType = [];
-  console.log("voiceType 값 :"+voiceType+"typeof voiceType :"+typeof voiceType);
+ /*console.log("voiceType 값 :"+voiceType+"typeof voiceType :"+typeof voiceType);
 
   $("#male").click(function (){
       $("#female").removeClass("female_change");
@@ -17,6 +17,12 @@ $(function (){
       $("#female").addClass("female_change");
       voiceType = $(this).attr("id");
       alert(voiceType);
+  }); */
+
+  $('select').on('change', function() {
+    // alert( this.value );
+    voiceType = this.value;
+    // console.log(voiceType)
   });
 
   $(function () {
@@ -33,6 +39,15 @@ $(function (){
               alert("내용을 입력하세요");
               document.sentMessage.text.focus()
               return false;
+          }
+
+          // 영어 타입 voice에서 한글 입력여부 검출
+          check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+          if (voiceType !=="ko_female" && check.test(document.sentMessage.text.value)) {
+            alert("Just write it in English please!")
+            document.getElementById("text").value='';
+            document.sentMessage.text.focus()
+            return false;
           }
 
           // Synthesize 처리 과정
@@ -54,6 +69,8 @@ $(function (){
               data: allData,
               success: function (result) {
                 audio = result["audio"]
+                // console.log(audio)
+                // console.log(typeof(audio))
                 q('#audio').hidden = false
                 q('#audio').src = audio
               }

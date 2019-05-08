@@ -124,17 +124,21 @@
 #wave-spectrogram{
     margin: 10px auto;
     position: relative;
-  }
+}
 
 #wave-spectrogram canvas{
     left: 0;
-  }
+}
   
 #specLabels{
       position: absolute!important;
-  }
+}
 
 .wave {
     width: 87%;
+}
+
+.modal-container {
+    border-color: #f60;
 }
   
