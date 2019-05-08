@@ -5,6 +5,8 @@ from django.core.serializers import serialize
 from django.http import HttpResponse
 import librosa as lr
 from eval import Eval
+from django.core.serializers import serialize
+from . models import Maratron
 
 def index(request):
     #print("index.......")
@@ -17,6 +19,7 @@ eval=Eval()
 eval.init()
 
 # Ajax
+# textToSpeech
 @csrf_exempt # 403 error 제어
 def synthesize(request):
     print("view 도착")
@@ -24,8 +27,8 @@ def synthesize(request):
     voiceType = request.POST['voiceType'].strip()
     print(text)
     print(voiceType)
-    voice_choice = 1  # default == female 
-    if (voiceType == 'male') : 
+    voice_choice = 1  # default == en_female 
+    if (voiceType == 'en_male') : 
         voice_choice = 2
 
     path_dir = '/static/audio/'
@@ -36,3 +39,25 @@ def synthesize(request):
 
     print(audio)
     return HttpResponse(audio, content_type="application/json")
+
+# audioStore
+def audioStore(request):
+    href = request.GET['href']
+    # print(href)
+    choice = href[-1]
+    # print(choice)
+    
+    # index를 기준으로 데이터 받아오기
+    data = Maratron.objects.get(index = choice)
+    print("data는 ", data)
+    
+    serialize_data = serialize('json', [data, ])
+    print("serialize는 ", serialize_data)
+    serialize_data = serialize_data.strip('[]')
+    print("strip은  ", serialize_data)
+    # serialize_data = json.loads(serialize_data)
+    # fields_data = serialize_data["fields"]
+    # print("fields는   ", fields_data)
+
+    return HttpResponse(json.dumps(serialize_data), 'application/json')
+   

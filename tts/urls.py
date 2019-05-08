@@ -6,4 +6,5 @@ app_name = 'tts'
 urlpatterns = [
     path('', views.index, name='index'),
     path('synthesize/', views.synthesize, name='synthesize'),
+    path('audioStore/', views.audioStore, name='audioStore'),
 ]
