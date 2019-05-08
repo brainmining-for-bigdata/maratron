@@ -12,6 +12,7 @@ from hparams import hparams, hparams_debug_string
 from models import create_model
 from text import sequence_to_text
 from util import audio, infolog, plot, ValueWindow
+from hparams import hparams
 log = infolog.log
 
 

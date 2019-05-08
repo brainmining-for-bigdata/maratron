@@ -195,3 +195,6 @@ california-12-logs/
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/django,python
+logs-tacotron/events.out.tfevents.1557192204.DESKTOP-EH6ITA6
+ljspeech_ko/transcript.txt
+training/train.txt
