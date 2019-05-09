@@ -47,7 +47,7 @@ else:
     raise Exception('Hangul type must in range (1:5)')
 
 
-def hangul_to_sequence(hangul_text, hangul_type=1):
+def hangul_to_sequence(hangul_text, cleaner_names):
     # load conversion dictionaries
     j2hcj, j2sj, j2shcj = load_j2hcj(), load_j2sj(), load_j2shcj()
     rulebook = os.path.join( 'KoTextProcessing/rulebook.txt')

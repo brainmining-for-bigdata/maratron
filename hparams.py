@@ -5,11 +5,15 @@ import tensorflow as tf
 hparams = tf.contrib.training.HParams(
   # Comma-separated list of cleaners to run on text prior to training and eval. For non-English
   # text, you may want to use "basic_cleaners" or "transliteration_cleaners" See TRAINING_DATA.md.
-  # cleaners='english_cleaners',
-  #한글 클리너 
-  cleaners='korean_cleaners',
-  hangul_type = 1,    #type of hangul conversion  
 
+  #cleaners 선택
+  #cleaners='english_cleaners',
+  #cleaners='korean_cleaners',
+
+  #type of hangul conversion (1 ~ 5)
+  hangul_type = 1, 
+  voice_choice = 1,
+  
   # Audio:
   num_mels=80,
   num_freq=1025,
@@ -20,7 +24,7 @@ hparams = tf.contrib.training.HParams(
   min_level_db=-100,
   ref_level_db=20,
 
-  # Model:
+  # Model1:
   outputs_per_step=5,
   embed_depth=256,
   prenet_depths=[256, 128],
