@@ -82,12 +82,23 @@ def run_eval(args):
   print(hparams_debug_string())
   synth = Synthesizer()
   synth.load(args.checkpoint)
-  base_path = get_output_base_path(args.checkpoint)
-  for i, text in enumerate(sentences):
-    path = '%s-%d.wav' % (base_path, i)
-    print('Synthesizing: %s' % path)
-    with open(path, 'wb') as f:
+  if (args.audiobook) :
+    with open(args.audiobook, encoding='utf-8') as f:
+      data = f.read()
+    parts = data.strip().split('|')
+    title=parts[0]
+    author=parts[1]
+    text=parts[2]
+    outpath= args.audiobook.replace(".txt", ".wav")
+    with open(outpath, 'wb') as f:
       f.write(synth.synthesize(text))
+  else: 
+    base_path = get_output_base_path(args.checkpoint)
+    for i, text in enumerate(sentences):
+      path = '%s-%d.wav' % (base_path, i)
+      print('Synthesizing: %s' % path)
+      with open(path, 'wb') as f:
+        f.write(synth.synthesize(text))
 
 
 def main():
@@ -97,6 +108,7 @@ def main():
     help='Hyperparameter overrides as a comma-separated list of name=value pairs')
 
   parser.add_argument('--cleaners', default='english_cleaners')
+  parser.add_argument('--audiobook', default='')
 
   args = parser.parse_args()
   os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'

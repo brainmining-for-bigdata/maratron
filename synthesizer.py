@@ -43,10 +43,10 @@ class Synthesizer:
     for text in texts:
       if cleaner_names[0] == 'english_cleaners' :
         seq = text_to_sequence(text, cleaner_names)
-        print ('***seq:', seq)
+        print (' text:{}\n seq{}:'.format( text,seq))
       elif cleaner_names[0] == 'korean_cleaners' :
         seq = hangul_to_sequence(text, cleaner_names)
-        print ('***seq:', seq) 
+        print (' text:{}\n seq{}:'.format( text,seq))
 
       feed_dict = {
         self.model.inputs: [np.asarray(seq, dtype=np.int32)],

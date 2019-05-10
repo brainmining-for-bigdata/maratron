@@ -7,7 +7,7 @@ hparams = tf.contrib.training.HParams(
   # text, you may want to use "basic_cleaners" or "transliteration_cleaners" See TRAINING_DATA.md.
 
   #cleaners 선택
-  #cleaners='english_cleaners',
+  cleaners='english_cleaners',
   #cleaners='korean_cleaners',
 
   #type of hangul conversion (1 ~ 5)
