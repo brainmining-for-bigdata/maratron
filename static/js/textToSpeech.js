@@ -1,5 +1,4 @@
 $(function (){
-
   function q(selector) { return document.querySelector(selector)}
 
   var voiceType = [];
@@ -30,13 +29,29 @@ $(function (){
         
           // voice 빈 값 유무 확인 
           if (voiceType.length==0) {
-            alert("목소리 타입을 선택하세요");
+            //alert("목소리 타입을 선택하세요");
+            Swal.fire({
+              type: 'warning',
+              title: '목소리 타입을 선택하세요',
+              animation: false,
+              customClass: {
+                popup: 'animated tada'
+              }
+            })
             return false;
         }        
         
           // text 빈 값 유무 확인 
           if (!document.sentMessage.text.value) {
-              alert("내용을 입력하세요");
+              //alert("내용을 입력하세요");
+              Swal.fire({
+                type: 'warning',
+                title: '내용을 입력하세요',
+                animation: false,
+                customClass: {
+                  popup: 'animated tada'
+                }
+              })
               document.sentMessage.text.focus()
               return false;
           }
@@ -44,7 +59,14 @@ $(function (){
           // 영어 타입 voice에서 한글 입력여부 검출
           check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
           if (voiceType !=="ko_female" && check.test(document.sentMessage.text.value)) {
-            alert("Just write it in English please!")
+            Swal.fire({
+              type: 'warning',
+              title: '"Just write it in English please!"',
+              animation: false,
+              customClass: {
+                popup: 'animated tada'
+              }
+            })
             document.getElementById("text").value='';
             document.sentMessage.text.focus()
             return false;
@@ -54,9 +76,14 @@ $(function (){
           text = q("#text").value.trim()
 
           if (text) {
-            q("#message").textContent = "Synthesizing..."
-            q('#button').disabled = false
-            q('#audio').hidden = true  
+            // q("#message").textContent = "Synthesizing..."
+            // q('#button').disabled = false
+          
+            //$('#button').replaceWith('<img src="/tts/img/loading.gif">');
+            q('#button').hidden = true
+            q('.loading-group').hidden = false
+            q('#loading_bg').hidden = false
+            q('#audio').hidden = true   
           }
 
           // 텍스트 값 views.py 전달
@@ -71,6 +98,9 @@ $(function (){
                 audio = result["audio"]
                 // console.log(audio)
                 // console.log(typeof(audio))
+                q('#button').hidden = false
+                q('.loading-group').hidden = true
+                q('#loading_bg').hidden = true
                 q('#audio').hidden = false
                 q('#audio').src = audio
               }

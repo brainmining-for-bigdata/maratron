@@ -9,7 +9,11 @@
   <title>Brain Mining_TextToSpeech</title>
 
   {% load static %}
-  <!-- -->
+  <!--favicon -->
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+  <!--font -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
   <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -26,6 +30,7 @@
   <!-- Custom styles for this template -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/freelancer.min.css' %}"> 
   <link rel="stylesheet" type="text/css" href="{% static 'css/customizing.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
  
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -44,6 +49,9 @@
   <script src="{% static 'js/button.js' %}"></script>
   <script src="{% static 'js/audioStore.js' %}"></script>
 
+   <!-- swal CDN -->
+    <!--<script src="{% static 'js/sweetalert.min.js' %}"></script>-->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>-->
 </head>
 
 
@@ -76,7 +84,7 @@
   <!-- Header -->
   <header class="masthead bg-primary text-white text-center">
     <div class="container">
-      <img class="img-fluid hy d-block mx-auto" src="{% static 'img/giphy1.gif' %}" alt="">
+      <img class="img-fluid hy d-block mx-auto" src="{% static 'img/logo.gif' %}" alt="">
       <h1 class="text-uppercase mb-0">Text To Speech</h1>
       <hr class="star-light">
     </div>
@@ -230,7 +238,7 @@
                 </div> -->
 
                 <!-- choice voiceType by dropdown -->
-                  <div class="voiceType">
+                <div class="voiceType">
                     <select class="voice">
                       <option value="">Voice Type</option>
                       <optgroup label="English">
@@ -243,6 +251,13 @@
                     </select>
                   </div>
 
+
+                {% comment %} <select class="voice" size="3">
+                  <option value="en_female">Female</option>
+                  <option value="en_male">Male</option>
+                  <option value="ko_female">여성</option>
+                </select> {% endcomment %}
+            
                   <label>내용을 입력해주세요</label>
                   <textarea class="form-control" name='text' id="text" rows="7" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                   <p class="help-block text-danger"></p>
@@ -250,13 +265,16 @@
             </div>
             <br>
             <div id="success"></div>
-            <div class="form-group">
               <button type="button" class="btn btn-primary btn-xl" id="button" name="synthesize">Synthesize</button>
+              <img id="loading_bg" src="{% static 'img/loading_bg.png' %}" hidden>            
+            <div class="loading-group form-group" hidden>
+              <img id="loading" src="{% static 'img/loading.gif' %}">
+              <span id="loading_text">Synthesize...</span>
             </div>
+              <audio id="audio" controls autoplay hidden>
+              <!--<p id="message"></p>-->
+              </audio>
           </form>
-          <p id="message"></p>
-          <audio id="audio" controls autoplay hidden>
-          </audio>
         </div>
       </div>
     </div>
@@ -265,7 +283,7 @@
 
   <div class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Your Website 2019</small>
+      <small><b>Copyright &copy; Maratron 2019 by BrainMining</b></small>
     </div>
   </div>
 
