@@ -8,9 +8,7 @@ from text import text_to_sequence
 from KoTextProcessing.HangulUtils import hangul_to_sequence
 from util import audio
 import re
-import nltk
-nltk.download('punkt')
-tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+import sys
 
 class Synthesizer:
   def load(self, checkpoint_path, model_name='tacotron'):
@@ -33,11 +31,28 @@ class Synthesizer:
     tf.reset_default_graph ()
     self.load(checkpoint_path, model_name='tacotron')
 
+  def tokenize (self, text , cleaner_name) :
+    if cleaner_name == 'korean_cleaners':
+      hangul = re.compile('[^ ,.?ㄱ-ㅣ가-힣]+')
+      pure_text = hangul.sub(' ', text) 
+      pure_text = pure_text.replace(',','.').replace('?','.')
+    elif cleaner_name == 'english_cleaners':
+      yeongeo = re.compile('[^ ,.?a-zA-Z]+')
+      pure_text = yeongeo.sub(' ', text)
+      pure_text = pure_text.replace(',','.').replace('?','.')
+    words = pure_text.split('.')
+
+    for i in range(0,len(words)) :
+      if len(words[i]) == 0 :
+        del words[i]
+    return words
+
   def synthesize(self, text):
     cleaner_names = [x.strip() for x in hparams.cleaners.split(',')]
     print ('***cleaner_names:', cleaner_names)
     print ('***text:', text)
-    texts = tokenizer.tokenize(text)
+    texts = self.tokenize(text,cleaner_names[0])
+    print(texts)
     waves=[]
 
     for text in texts:
@@ -55,7 +70,11 @@ class Synthesizer:
       wav = self.session.run(self.wav_output, feed_dict=feed_dict)
       wav = audio.inv_preemphasis(wav)
       wav = wav[:audio.find_endpoint(wav)]
+      print(sys.getsizeof(wav))
       waves.append(wav)
+      print(len(waves))
+      
+
     wavestack=waves[0]
     for wave in waves[1:]:
       wavestack=np.hstack((wavestack,wave))  
