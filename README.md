@@ -1,3 +1,21 @@
+# maratron DB 생성 방법  
+```mysql> create database maratron;
+생성된 DB 확인
+mysql> show databases;
+Project Terminal
+```
+## default table, tts App 내 DB 모델 생성 및 반영
+```(encore) C:\Users\user\Documents\maratron>python manage.py migrate
+반영 여부 확인
+(encore) C:\Users\user\Documents\maratron>python manage.py showmigrations tts
+superUser 계정 생성
+(encore) C:\Users\user\Documents\maratron>python manage.py createsuperuser
+서버 구동하여 admin 페이지 정상 접속 여부 확인
+(encore) C:\Users\user\Documents\maratron>python manage.py runserver
+```
+http://127.0.0.1:8000/admin/
+
+
 # Team Project 
 Text2Speech를 구현한 Django Project
 Model : tacotron 사용
