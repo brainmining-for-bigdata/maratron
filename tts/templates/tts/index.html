@@ -98,10 +98,9 @@
       <div class="row">
       </div>  
     </div>
-    <br>
-    <br>
     <div class="container border heading wave" style="border-bottom-width:0px;">
-        <h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-40000-audio.wav</h5>
+      <h5><i class="headphone_icon fas fa-headphones-alt"></i> 안녕하세요. 저희는 마라트론입니다.</h5>
+        <!--<h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-40000-audio.wav</h5>-->
     </div>
     <div class="container border hero wave">
       <div class="container">
@@ -116,18 +115,16 @@
         </div>
       </div>
       <br>
-      <br>
       <div class="container">
-        <div class='ptext'>
-          <p>"오디오 샘플 텍스트 내용"</p>
-        </div>
+        <!-- <div class='ptext'>
+          <p>"안녕하세요. 저희는 마라트론입니다."</p>
+        </div>-->
       </div>
     </div>
     <br>
-    <br>
-    <br>
     <div class="container border heading wave" style="border-bottom-width:0px;">
-        <h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-13000-audio.wav</h5>
+      <h5><i class="headphone_icon fas fa-headphones-alt"></i> Hello. We are Maratron. Because We like the Maratang.</h5>
+        <!-- <h5><img src="{% static 'img/profile-picture.png' %}" width=4%> step-13000-audio.wav</h5>-->
     </div>
     <div class="container border hero wave">
       <div class="container">
@@ -142,11 +139,10 @@
         </div>
       </div>
       <br>
-      <br>
       <div class="container">
-        <div class='ptext'>
-          <p>"오디오 샘플 텍스트 내용"</p>
-        </div>
+        <!--<div class='ptext'>
+          <p>"Hello. We are Maratron. Because We like the Maratang."</p>
+        </div> -->
       </div>
     </div>
   </section>
@@ -229,7 +225,7 @@
         <div class="col-lg-8 mx-auto">
           <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post">
           {% csrf_token %}
-            <div >
+            <div>
              <!-- choice voiceType by icon -->
               <div class="form-group floating-label-form-group controls mb-0 pb-2"> 
                 <!--<div class="voice">
@@ -241,16 +237,11 @@
                 <div class="voiceType">
                     <select class="voice">
                       <option value="">Voice Type</option>
-                      <optgroup label="English">
-                        <option value="en_female">Female</option>
-                        <option value="en_male">Male</option>
-                      </optgroup>
-                      <optgroup label="Korean">
-                        <option value="ko_female">여성</option>
-                      </optgroup>
+                      <option value="en_female">English_Female</option>
+                      <option value="en_male">English_Male</option>
+                      <option value="ko_female">한국어_여성</option>
                     </select>
                   </div>
-
 
                 {% comment %} <select class="voice" size="3">
                   <option value="en_female">Female</option>
@@ -258,7 +249,7 @@
                   <option value="ko_female">여성</option>
                 </select> {% endcomment %}
             
-                  <label>내용을 입력해주세요</label>
+                  <br>
                   <textarea class="form-control" name='text' id="text" rows="7" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                   <p class="help-block text-danger"></p>
               </div>

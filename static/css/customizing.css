@@ -74,7 +74,7 @@
 }
 
 .btn-orange {
-    background: #f60; 
+    background: #232323; 
     /* background: #fcbc02; */
     color: #fff;
 }
@@ -86,7 +86,7 @@
 
 .hero {
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     background-color: white;
 }
 
@@ -101,7 +101,8 @@
 
 .heading {
     border: 1px solid #dee2e6;
-    padding-bottom: 0px;
+    /* padding-bottom: 10px; */
+    padding-top: 12px;
     margin-bottom: 0px;
     color: gray;  
     background-color: white;
@@ -182,12 +183,16 @@
 
 /* select-Box CSS */
 .voice {
-    width : 15%;
+    width : 18%;
     height : 40px;
     background-color: #d06459;
     color : #fff;
     border-radius : 0.5em;
-    padding-left : 10px;
+    /* padding-left : 10px; */
+}
+
+label {
+    padding-left: 10px;
 }
 
 optgroup {
@@ -199,6 +204,7 @@ optgroup {
 option {
     background-color: #fff!important;   
     color : #232323!important;
+    padding-left: 5px;
 }
 
 option:hover, optgroup:hover {
@@ -212,3 +218,23 @@ option:hover, optgroup:hover {
     border-color : #d06459 solid 1px;
 
 } */
+
+.headphone_icon {
+    color : #d06459;
+}
+
+/* modal css */
+.audiostore-modal{
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    margin-left: -30%; /* half of width */
+    height: 800px;
+    top: 50%;
+    margin-top: -400px; /* half of height */
+    /* overflow: auto; */
+ }
+
+.audiostore-modal-dialog {
+    border-radius: 25px;
+}
