@@ -5,6 +5,7 @@ from hparams import hparams
 from librosa import effects
 from models import create_model
 from text import text_to_sequence
+from KoTextProcessing.HangulUtils import hangul_to_sequence
 from util import audio
 import re
 import nltk
@@ -28,8 +29,9 @@ class Synthesizer:
     self.saver.restore(self.session, checkpoint_path)
 
   def reload(self, checkpoint_path, model_name='tacotron'):
-    #print('Loading checkpoint: %s' % checkpoint_path)
-    self.saver.restore(self.session, checkpoint_path)
+    self.session.close()
+    tf.reset_default_graph ()
+    self.load(checkpoint_path, model_name='tacotron')
 
   def synthesize(self, text):
     cleaner_names = [x.strip() for x in hparams.cleaners.split(',')]
@@ -39,8 +41,12 @@ class Synthesizer:
     waves=[]
 
     for text in texts:
-      seq = text_to_sequence(text, cleaner_names)
-      print ('***seq:', seq)
+      if cleaner_names[0] == 'english_cleaners' :
+        seq = text_to_sequence(text, cleaner_names)
+        print ('***seq:', seq)
+      elif cleaner_names[0] == 'korean_cleaners' :
+        seq = hangul_to_sequence(text, cleaner_names)
+        print ('***seq:', seq) 
 
       feed_dict = {
         self.model.inputs: [np.asarray(seq, dtype=np.int32)],

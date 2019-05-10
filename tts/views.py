@@ -8,12 +8,11 @@ from eval import Eval
 from django.core.serializers import serialize
 from . models import Maratron
 
+
 def index(request):
-    #print("index.......")
+    print("index.......")
     return render(request, 'tts/index.html')
 
-#female =1 (default)
-#male=2
 #여자 목소리를 디폴트로 지정하여 모델 초기화 
 eval=Eval()
 eval.init()
@@ -23,13 +22,20 @@ eval.init()
 @csrf_exempt # 403 error 제어
 def synthesize(request):
     print("view 도착")
-    text = request.POST['text'].strip()
-    voiceType = request.POST['voiceType'].strip()
+    # text = request.POST['text'].strip()
+    text = request.POST.get('text',False)
+    # voiceType = request.POST['voiceType'].strip()
+    voiceType = request.POST.get('voiceType')
     print(text)
     print(voiceType)
     voice_choice = 1  # default == en_female 
-    if (voiceType == 'en_male') : 
+
+    if (voiceType == 'en_female') : 
+        voice_choice = 1
+    elif (voiceType == 'en_male') : 
         voice_choice = 2
+    else :
+        voice_choice = 3
 
     path_dir = '/static/audio/'
     audio_file = path_dir + eval.text(text, voice_choice)

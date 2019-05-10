@@ -4,8 +4,7 @@ import re
 from hparams import hparams, hparams_debug_string
 from synthesizer import Synthesizer
 
-
-sentences = [
+'''sentences = [
   # From July 8, 2017 New York Times:
   'Scientists at the CERN laboratory say they have discovered a new particle.',
   'There’s a way to measure the acute emotional intelligence that has never gone out of style.',
@@ -16,31 +15,55 @@ sentences = [
   'The buses aren\'t the problem, they actually provide a solution.',
   'Does the quick brown fox jump over the lazy dog?',
   'Talib Kweli confirmed to AllHipHop that he will be releasing an album in the next year.',
-]
+]'''
+
+
 class Eval :
   def init(self):
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
     hparams.parse('')
     print(hparams_debug_string())
-    self.voice_choice = 1 # female default
+    self.voice_choice = hparams.voice_choice # female default
     self.base_dir = os.getcwd()
-    checkpoint = os.path.join(self.base_dir, 'logs-tacotron-model', 'model.ckpt-64000')
-    self.output_path = os.path.join (self.base_dir, 'static', 'audio', 'output.wav')
     self.synth = Synthesizer()
+    self.output_path = os.path.join (self.base_dir, 'static', 'audio', 'output.wav')
+    checkpoint= os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+    hparams.cleaners = 'english_cleaners'
     self.synth.load(checkpoint)
 
+
+
+  # ['english_cleaners','korean_cleaners']
   def reload_checkpoint(self, voice_choice) :
-    if voice_choice ==1 :
-      checkpoint= os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
-    else :
-      checkpoint = os.path.join(self.base_dir, 'california-12-logs', 'model.ckpt-112000')
     self.voice_choice = voice_choice
-    print ('Synthesizing: %s' % checkpoint)
-    self.synth.reload(checkpoint)
+    if voice_choice == 1 :
+      checkpoint= os.path.join(self.base_dir, 'LJlogs-tacotron', 'model.ckpt-40000')
+      hparams.cleaners = 'english_cleaners'
+      print ('Synthesizing: %s' % checkpoint)
+      # self.synth.load(checkpoint)
+      self.synth.reload(checkpoint)
+    elif voice_choice == 2 :
+      checkpoint = os.path.join(self.base_dir, 'california-12-logs', 'model.ckpt-112000')
+      hparams.cleaners = 'english_cleaners'
+      print ('Synthesizing: %s' % checkpoint)
+      # self.synth.load(checkpoint)
+      self.synth.reload(checkpoint)
+    else :
+      checkpoint = os.path.join(self.base_dir, 'logs-tacotron-model', 'model.ckpt-64000')
+      hparams.cleaners = 'korean_cleaners'
+      print ('Synthesizing: %s' % checkpoint)
+      # self.synth.load(checkpoint)
+      self.synth.reload(checkpoint)
+    
+    # self.voice_choice = voice_choice
+    # print ('Synthesizing: %s' % checkpoint)
+    # self.synth.reload(checkpoint)
     
 
   def text(self, text, voice_choice):
     print ('voice changed to  ', voice_choice)
+    print(self.voice_choice)
+    print(voice_choice)
     if self.voice_choice != voice_choice : 
       self.reload_checkpoint (voice_choice)
     with open(self.output_path, 'wb') as f:
@@ -72,6 +95,9 @@ def main():
   parser.add_argument('--checkpoint', required=True, help='Path to model checkpoint')
   parser.add_argument('--hparams', default='',
     help='Hyperparameter overrides as a comma-separated list of name=value pairs')
+
+  parser.add_argument('--cleaners', default='english_cleaners')
+
   args = parser.parse_args()
   os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
   hparams.parse(args.hparams)

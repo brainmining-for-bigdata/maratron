@@ -36,32 +36,18 @@ class Tacotron():
       is_training = linear_targets is not None
       batch_size = tf.shape(inputs)[0]
       hp = self._hparams
-
       if hp.cleaners == 'korean_cleaners':
-        ### get symbol to create embedding lookup table
-        if hp.hangul_type == 1:
-            hangul_symbol = hangul_symbol_1
-        elif hp.hangul_type == 2:
-            hangul_symbol = hangul_symbol_2
-        elif hp.hangul_type == 3:
-            hangul_symbol = hangul_symbol_3
-        elif hp.hangul_type == 4:
-            hangul_symbol = hangul_symbol_4
-        else:
-            hangul_symbol = hangul_symbol_5
-
-
-      # Embeddings_Ko 
-      embedding_table = tf.get_variable(
-          'inputs_embedding', [len(hangul_symbol), hp.embed_depth], dtype=tf.float32)
-      embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)
-      # print(embedded_inputs)
-
-      # Embeddings_Eng
-      '''embedding_table = tf.get_variable(
-        'embedding', [len(symbols), hp.embed_depth], dtype=tf.float32,
-        initializer=tf.truncated_normal_initializer(stddev=0.5))
-      embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)  '''        
+        # Embeddings_Ko 
+        embedding_table = tf.get_variable(
+          'inputs_embedding', [len(hangul_symbol_1), hp.embed_depth], dtype=tf.float32)
+        embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)
+        # print(embedded_inputs)
+      elif hp.cleaners == 'english_cleaners':
+        # Embeddings_Eng
+        embedding_table = tf.get_variable(
+          'embedding', [len(symbols), hp.embed_depth], dtype=tf.float32,
+          initializer=tf.truncated_normal_initializer(stddev=0.5))
+        embedded_inputs = tf.nn.embedding_lookup(embedding_table, inputs)       
 
       # Encoder
       prenet_outputs = prenet(embedded_inputs, is_training, hp.prenet_depths)    
