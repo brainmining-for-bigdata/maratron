@@ -87,10 +87,10 @@ $(function (){
           }
 
           // 텍스트 값 views.py 전달
-          urls = '/tts/synthesize/';
+          //urls = '/tts/synthesize/';
           var allData = {"voiceType": voiceType, "text": $("#text").val()};
             $.ajax({
-              url: urls,
+              url: '/tts/synthesize/',
               datatype: "text",
               type: "POST",
               data: allData,

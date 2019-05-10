@@ -1,9 +1,9 @@
 // SOUND WAVE JS
 var Spectrum = WaveSurfer.create({
     container: '#audio-spectrum',
-    progressColor: 'lightseagreen',
-    //barWidth: 4,
-    barHeight: 1.7,
+    progressColor: '#b03c36',
+    barWidth: 1,
+    barHeight: 1.5,
     hideScrollbar: true,
     cursorWidth:0,
   });    
@@ -17,10 +17,12 @@ var Spectrum = WaveSurfer.create({
     Spectrum.seekTo(currentProgress);
   });
         
-  Spectrum.load("/static/audio/step-40000-audio.wav");
+  Spectrum.load("/static/audio/koreanversion.wav");
   
+  var originalTime = "";
   Spectrum.on('ready', function () {
-    console.log('ready');
+    originalTime = Spectrum.getDuration().toFixed(1);
+    document.getElementById('audio-time').innerText =  originalTime;
   });
 
   Spectrum.on('audioprocess', function() {
@@ -28,25 +30,25 @@ var Spectrum = WaveSurfer.create({
         var totalTime = Spectrum.getDuration(),
         currentTime = Spectrum.getCurrentTime(),
         remainingTime = totalTime - currentTime;
-        console.log(Math.round(remainingTime));
-        if(Math.round(remainingTime)===0.0) {
-            
-            Spectrum.stop();
-            document.getElementById('btn-pause').value = 'Play';
-            document.getElementById('btn-pause').id = 'btn-play';
-            document.getElementById('icon').className = 'fa fa-play'
-           
-        };
+        console.log(remainingTime.toFixed(2));
         document.getElementById('audio-time').innerText = Math.round(remainingTime).toFixed(1);
+        if(remainingTime.toFixed(2) < 0.02) {
+          Spectrum.stop();
+          document.getElementById('btn-pause').value = 'Play';
+          document.getElementById('btn-pause').id = 'btn-play';
+          document.getElementById('icon').className = 'fa fa-play';
+          document.getElementById('audio-time').innerText = originalTime;          
+        };
     }; 
   });
-  
+
+
 // SOUND WAVE JS
 var Spectrum2 = WaveSurfer.create({
     container: '#audio-spectrum2',
-    progressColor: 'lightseagreen',
-    //barWidth: 4,
-    barHeight: 1.7,
+    progressColor: '#b03c36',
+    barWidth: 1,
+    barHeight: 1.5,
     hideScrollbar: true,
     cursorWidth:0,
   });    
@@ -61,27 +63,28 @@ var Spectrum2 = WaveSurfer.create({
     Spectrum2.seekTo(currentProgress);
   });
         
-  Spectrum2.load("/static/audio/step-13000-audio.wav");
+  Spectrum2.load("/static/audio/englishversion.wav");
   
-  Spectrum2.on('ready', function () {
-    console.log('ready');
-  });
 
+  var originalTime2 = "";
+  Spectrum2.on('ready', function () {
+    originalTime2 = Spectrum2.getDuration().toFixed(1);
+    document.getElementById('audio-time2').innerText =  originalTime2;
+  });
+  
   Spectrum2.on('audioprocess', function() {
     if(Spectrum2.isPlaying()) {
         var totalTime2 = Spectrum2.getDuration(),
         currentTime2 = Spectrum2.getCurrentTime(),
         remainingTime2 = totalTime2 - currentTime2;
-        console.log(Math.round(remainingTime2));
-        if(Math.round(remainingTime2)===0.0) {
-            
-            Spectrum2.stop();
-            document.getElementById('btn-pause2').value = 'Play';
-            document.getElementById('btn-pause2').id = 'btn-play2';
-            document.getElementById('icon2').className = 'fa fa-play'
-           
-        };
         document.getElementById('audio-time2').innerText = Math.round(remainingTime2).toFixed(1);
+        if(remainingTime2.toFixed(2) < 0.02) {
+          Spectrum2.stop();
+          document.getElementById('btn-pause2').value = 'Play';
+          document.getElementById('btn-pause2').id = 'btn-play2';
+          document.getElementById('icon2').className = 'fa fa-play';
+          document.getElementById('audio-time2').innerText = originalTime2;          
+        };
     }; 
   });
   
