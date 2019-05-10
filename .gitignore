@@ -187,7 +187,6 @@ dmypy.json
 # mkdocs documentation
 
 # mypy
-*.wav
 *.npy
 LJlogs-tacotron/
 .vscode/
@@ -198,3 +197,4 @@ california-12-logs/
 logs-tacotron/events.out.tfevents.1557192204.DESKTOP-EH6ITA6
 ljspeech_ko/transcript.txt
 training/train.txt
+static/audio/output.wav
