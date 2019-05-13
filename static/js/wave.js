@@ -17,7 +17,7 @@ var Spectrum = WaveSurfer.create({
     Spectrum.seekTo(currentProgress);
   });
         
-  Spectrum.load("/static/audio/koreanversion.wav");
+  Spectrum.load("/static/audio/kor_version.wav");
   
   var originalTime = "";
   Spectrum.on('ready', function () {
@@ -63,7 +63,7 @@ var Spectrum2 = WaveSurfer.create({
     Spectrum2.seekTo(currentProgress);
   });
         
-  Spectrum2.load("/static/audio/englishversion.wav");
+  Spectrum2.load("/static/audio/eng_version.wav");
   
 
   var originalTime2 = "";
