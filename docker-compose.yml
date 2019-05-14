@@ -1,0 +1,39 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:latest 
+    ports:
+      - "3000:8000"
+    volumes:
+      - .:/code
+      - ./nginx:/etc/nginx/conf.d
+    depends_on: 
+     - app
+  db:
+    image: mysql:5.7
+    container_name: mysql_server
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'maratron'
+      #MYSQL_USER: #volume error
+      MYSQL_PASSWORD: '1234'
+      MYSQL_ROOT_PASSWORD: '1234'  
+    command: --innodb_use_native_aio=0
+    restart: always
+    # replace folder path with your folder specified in virtualbox share folder name
+    volumes:
+      - ./mysql:/var/lib/mysql
+  app:
+    image: django_image
+    container_name: django_server
+    # replace folder path with your folder specified in virtualbox share folder name
+    volumes:
+      - .:/code
+    build: .
+    command: gunicorn ttsProject.wsgi:application --bind 0.0.0.0:8000 --timeout=30 --workers=2
+    expose:
+      - "8000"
+    depends_on:
+      - db
+

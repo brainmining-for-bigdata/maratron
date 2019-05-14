@@ -23,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'soy=46#3$vxz00s=dgu_&v2er#7dv^q@a_+0df*_#5e340rpj^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#docker
+# DEBUG = False
+# ALLOWED_HOSTS = ['*']
+#local
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -82,6 +84,7 @@ DATABASES = {
     'USER': 'root',
     'PASSWORD': '1234',
     'HOST': '127.0.0.1',
+    # 'HOST': 'db',
     'PORT': '3306',
     }
 }
@@ -125,6 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
+STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
