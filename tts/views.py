@@ -7,6 +7,7 @@ import librosa as lr
 from eval import Eval
 from django.core.serializers import serialize
 from . models import Maratron
+import base64
 
 
 def index(request):
@@ -36,15 +37,18 @@ def synthesize(request):
         voice_choice = 2
     else :
         voice_choice = 3
-
+   
+    '''
     path_dir = '/static/audio/'
     audio_file = path_dir + eval.text(text, voice_choice)
     print(audio_file)
     audio = {"audio":audio_file}
-    audio = json.dumps(audio)
-
-    print(audio)
-    return HttpResponse(audio, content_type="application/json")
+    '''
+    audio = eval.text(text, voice_choice)
+    # print(type(audio))
+    # print(audio)
+    audio = base64.b64encode(audio)
+    return HttpResponse(audio, content_type="audio/wav")
 
 # audioStore
 def audioStore(request):
@@ -66,4 +70,3 @@ def audioStore(request):
     # print("fields는   ", fields_data)
 
     return HttpResponse(json.dumps(serialize_data), 'application/json')
-   
