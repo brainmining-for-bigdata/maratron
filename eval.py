@@ -66,10 +66,13 @@ class Eval :
     print(voice_choice)
     if self.voice_choice != voice_choice : 
       self.reload_checkpoint (voice_choice)
+    return (self.synth.synthesize(text))
+    '''
     with open(self.output_path, 'wb') as f:
       f.write(self.synth.synthesize(text))
     return os.path.basename(self.output_path)
-
+    '''
+    
 def get_output_base_path(checkpoint_path):
   base_dir = os.path.dirname(checkpoint_path)
   m = re.compile(r'.*?\.ckpt\-([0-9]+)').match(checkpoint_path)
@@ -79,6 +82,7 @@ def get_output_base_path(checkpoint_path):
     
 
 def run_eval(args):
+  hparams.cleaners = args.cleaners
   print(hparams_debug_string())
   synth = Synthesizer()
   synth.load(args.checkpoint)

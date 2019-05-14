@@ -95,17 +95,13 @@ $(function (){
               type: "POST",
               data: allData,
               success: function (result) {
-                audio = result["audio"]
-                // console.log(audio)
-                // console.log(typeof(audio))
                 q('#button').hidden = false
                 q('.loading-group').hidden = true
                 q('#loading_bg').hidden = true
                 q('#audio').hidden = false
-                q('#audio').src = audio
+                q('#audio').src = "data:audio/wav;base64," + result ;
               }
             });
       });
   });
 });
-
