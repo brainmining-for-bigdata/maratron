@@ -188,13 +188,15 @@ dmypy.json
 
 # mypy
 *.npy
-LJlogs-tacotron/
 .vscode/
-california-12-logs/
 # Pyre type checker
 
+mysql/
+static_root/
 # End of https://www.gitignore.io/api/django,python
 logs-tacotron/events.out.tfevents.1557192204.DESKTOP-EH6ITA6
 ljspeech_ko/transcript.txt
 training/train.txt
 static/audio/output.wav
+LJlogs-tacotron/*.wav
+LJlogs-tacotron/events.out.tfevents.1554107595.class26

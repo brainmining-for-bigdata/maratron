@@ -10,7 +10,7 @@ from util import audio
 import re
 import sys
 import nltk
-from konlpy.tag import Kkma
+
 
 
 class Synthesizer:
