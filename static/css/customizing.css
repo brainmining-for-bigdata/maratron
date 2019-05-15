@@ -262,3 +262,24 @@ h3.kortext {
     font-family: 'Gamja Flower', cursive;
     width: 200px;
 }
+
+.content-text  {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+audio {
+    margin-bottom: 2rem;
+}
+
+.content-author {
+    text-align: right;
+}
+
+.h1_eng {
+    font-size: 2.3rem;
+}
+
+.fa-times:hover {
+    color: #d06459;
+}
