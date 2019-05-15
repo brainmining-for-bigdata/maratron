@@ -238,3 +238,27 @@ option:hover, optgroup:hover {
 .audiostore-modal-dialog {
     border-radius: 25px;
 }
+
+h3.engtext {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);     
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    font-family: 'Lora', serif;
+    width: 200px;
+}
+
+h3.kortext {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);     
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    font-family: 'Gamja Flower', cursive;
+    width: 200px;
+}
