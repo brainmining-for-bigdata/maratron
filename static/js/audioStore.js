@@ -14,7 +14,7 @@ $(function () {
                 // console.log(result)
 
                 title = result['fields']['title']
-                name = result['fields']['name']
+                author = result['fields']['author']
                 contents = "/media/" + result['fields']['contents']
                 audio = "/media/" + result['fields']['audio']
                 console.log(audio)
@@ -31,7 +31,7 @@ $(function () {
                 });
                 // console.log("result는 ", audio)
                 $('.content-title').text(title)
-                $('.content-author').text(name)
+                $('.content-author').text(author)
                 q('#content-audio').hidden = false;
                 q('#content-audio').src = audio
             }
