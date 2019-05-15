@@ -4,7 +4,7 @@ jQuery(function($) {
       var $el = $(this)
       
       $el.toggleClass('toggler');
-      console.log($el.attr('id'));
+      
       
       $el.attr('id', 'btn-pause')
       $el.attr('value', 'Pause')
@@ -15,7 +15,7 @@ jQuery(function($) {
       var $el = $(this)
       
       $el.toggleClass('toggler');
-      console.log($el.attr('id'));
+     
       
       $el.attr('id', 'btn-pause2')
       $el.attr('value', 'Pause')
@@ -26,7 +26,7 @@ jQuery(function($) {
   jQuery(function($) {
       $('#btn-pause').on('click', function() {
         var $el = $(this)
-        console.log($el.attr('id'));
+       
         
       $el.attr('id', 'btn-play')
       $el.attr('value', 'Play')
@@ -35,7 +35,7 @@ jQuery(function($) {
       
       $('#btn-pause2').on('click', function() {
         var $el = $(this)
-        console.log($el.attr('id'));
+       
         
       $el.attr('id', 'btn-play2')
       $el.attr('value', 'Play')

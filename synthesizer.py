@@ -36,17 +36,19 @@ class Synthesizer:
 
   def tokenize (self, text , cleaner_name) :
     if cleaner_name == 'korean_cleaners':
-      hangul = re.compile('[^ ,.?ㄱ-ㅣ가-힣]+')
-      Ko_text = hangul.sub(' ', text) 
-      text = Ko_text.replace(',','.').replace('?','.')
-      sentence = text.split('.')
+      # hangul = re.compile('[^ ,.?ㄱ-ㅣ가-힣]+')
+      # Ko_text = hangul.sub(' ', text) 
+      # sentence = text.split('.')
+      tokenizer = nltk.data.load('text/punkt/english.pickle')
+      text = text.replace(',','.').replace('?','.')
+      sentence = tokenizer.tokenize(text)
 
     elif cleaner_name == 'english_cleaners':
       tokenizer = nltk.data.load('text/punkt/english.pickle')
       sentence = tokenizer.tokenize(text)
 
     for i in range(0,len(sentence)) :
-      if len(sentence[i]) == 0 :
+      if len(sentence[i]) == 0 or sentence[i] == ' ' :
         del sentence[i]
     return sentence
 
