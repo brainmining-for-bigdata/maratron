@@ -8,7 +8,7 @@ CATEGORY_CHOICES = (
                     ('영어', '영어'),
 )
 class Maratron(models.Model):
-    index = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     category = models.CharField(max_length=4, choices=CATEGORY_CHOICES, default="한국어")
     author = models.CharField(max_length=50)
     title = models.CharField(max_length=50)

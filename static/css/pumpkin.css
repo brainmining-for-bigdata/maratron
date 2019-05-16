@@ -122,10 +122,10 @@ text-indent:20px;
 	color:#fff;	
 }
 
-.heapBox .heap .heapOptions .heapOption a.selected{
+/* .heapBox .heap .heapOptions .heapOption a.selected{
 	background:#d06459;
 	color:#fff;	
-}
+} */
 
 .heapBox .heap .heapOptions .heapOption a.disabled{
 	background:#C1392B;
