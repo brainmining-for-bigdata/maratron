@@ -182,7 +182,7 @@
 }
 
 /* select-Box CSS */
-.voice {
+/* .voice {
     width : 18%;
     height : 40px;
     background-color: #d06459;
@@ -211,7 +211,7 @@ option:hover, optgroup:hover {
     color : #fff;
     border-color : #d06459 solid 1px;
     background-color : #d06459;
-}
+} */
 
 /* .voiceType.hover, optgroup:hover, option:hover,option:focus {
     background-color : #d06459;
@@ -220,7 +220,7 @@ option:hover, optgroup:hover {
 } */
 
 .headphone_icon {
-    color : #d06459;
+    color : #d06459 !important;
 }
 
 /* modal css */
@@ -237,4 +237,33 @@ option:hover, optgroup:hover {
 
 .audiostore-modal-dialog {
     border-radius: 25px;
+}
+
+/* alert css*/
+.swal2-styled.swal2-confirm {
+    background-color: #232323!important; 
+    border-left-color: #232323!important;
+    border-right-color: #232323!important;
+    border-color: #232323!important;
+}
+
+.swal2-styled:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #fff!important;
+}
+
+.swal2-styled:hover {
+    background-color: #d06459!important; 
+    border-left-color: #d06459!important;
+    border-right-color: #d06459!important;
+    border-color: #d06459!important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #d06459!important;
+    color: #C1392B!important;
+}
+
+.swal2-popup {
+    opacity: 0.8;
 }
