@@ -1,3 +1,4 @@
+/* 기타 CSS */
 .aa {
     font-size : 50px;  
 }
@@ -6,53 +7,8 @@
     width : 30%!important;
 }
 
-#male {
-    background: url('/static/svg/male.svg') no-repeat;
-    border: none;
-    width: 50px;
-    height: 50px;
-    padding-right: 35px;
-    padding-left: 35px;
-    cursor: pointer;
-}
-
-#male:hover, .male_change {
-    transform: scale(1.1);
-    background: url('/static/svg/male2.svg') no-repeat !important;
-    border: none;
-    width: 50px;
-    height: 50px;
-    padding-right: 35px;
-    padding-left: 35px;
-    cursor: pointer;
-    outline: none ;
-}
-
-#female {
-    background: url('/static/svg/female.svg') no-repeat;
-    border: none;
-    width: 50px;
-    height: 50px;
-    padding-right: 35px;
-    padding-left: 35px;
-    cursor: pointer;
-}
-
-#female:hover, .female_change{
-    transform: scale(1.1);
-    background: url('/static/svg/female2.svg') no-repeat !important;
-    border: none;
-    width: 50px;
-    height: 50px;
-    padding-right: 35px;
-    padding-left: 35px;
-    cursor: pointer;
-    outline: none ;
-}
 
 /* CSS for SOUND WAVE */
-
-
 .btn-circle.btn-xl {
     width: 70px;
     height: 70px;
@@ -101,7 +57,6 @@
 
 .heading {
     border: 1px solid #dee2e6;
-    /* padding-bottom: 10px; */
     padding-top: 12px;
     margin-bottom: 0px;
     color: gray;  
@@ -121,7 +76,6 @@
     font-size: 50px;
 }
 
-
 #wave-spectrogram{
     margin: 10px auto;
     position: relative;
@@ -139,10 +93,8 @@
     width: 87%;
 }
 
-.modal-container {
-    border-color: #f60;
-}
 
+/* textToSppech loading section */
 .loading-group{
     display: inline-block;
     position:absolute;
@@ -154,7 +106,6 @@
 
 .loading-group #loading_text {
     display: block;
-
 }
 
 #loading_bg {
@@ -181,62 +132,11 @@
     padding-top: 25px;
 }
 
-/* select-Box CSS */
-/* .voice {
-    width : 18%;
-    height : 40px;
-    background-color: #d06459;
-    color : #fff;
-    border-radius : 0.5em;
-    /* padding-left : 10px; */
-}
-
-label {
-    padding-left: 10px;
-}
-
-optgroup {
-    background-color: #fff;
-    color : #232323;
-    border-color : #d06459;
-}
-
-option {
-    background-color: #fff!important;   
-    color : #232323!important;
-    padding-left: 5px;
-}
-
-option:hover, optgroup:hover {
-    color : #fff;
-    border-color : #d06459 solid 1px;
-    background-color : #d06459;
-} */
-
-/* .voiceType.hover, optgroup:hover, option:hover,option:focus {
-    background-color : #d06459;
-    border-color : #d06459 solid 1px;
-
-} */
-
-.headphone_icon {
-    color : #d06459 !important;
-}
-
-/* modal css */
-.audiostore-modal{
-    position: absolute;
-    width: 60%;
-    left: 50%;
-    margin-left: -30%; /* half of width */
-    height: 800px;
-    top: 50%;
-    margin-top: -400px; /* half of height */
-    /* overflow: auto; */
- }
-
-.audiostore-modal-dialog {
-    border-radius: 25px;
+#audio:focus {
+    outline: -webkit-focus-ring-color!important;
+    outline-color: -webkit-focus-ring-color;
+    outline-style: auto;
+    outline-width: 5px;
 }
 
 /* alert css*/
@@ -268,6 +168,7 @@ option:hover, optgroup:hover {
     opacity: 0.8;
 }
 
+
 /* modal css */
 h3.engtext {
     position: absolute;
@@ -296,11 +197,16 @@ h3.kortext {
 .content-text  {
     margin-bottom: 2rem;
     font-size: 1.2rem;
-}
+    text-align: justify;
+ }
+ 
+ .poemtype {
+    text-align: center!important;
+ }
 
-audio {
+/* audio {
     margin-bottom: 2rem;
-}
+} */
 
 .content-author {
     text-align: right;
@@ -313,3 +219,30 @@ audio {
 .fa-times:hover {
     color: #d06459;
 }
+
+.audiostore-modal{
+    position: absolute;
+    width: 60%;
+    left: 50%;
+    margin-left: -30%; /* half of width */
+    height: 800px;
+    top: 50%;
+    margin-top: -400px; /* half of height */
+    /* overflow: auto; */
+ }
+
+.audiostore-modal-dialog {
+    border-radius: 25px;
+}
+
+.audiostore-modal > .content-bottom {
+    width : 631.91px;
+    /* display: inline-block; */
+    position: absolute;
+    bottom: 10%;
+    /* margin-bottom: 2rem; */
+ }
+ 
+ #content-audio {
+    margin-bottom: 1rem;
+ }

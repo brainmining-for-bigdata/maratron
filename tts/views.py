@@ -57,8 +57,8 @@ def audioStore(request):
     choice = href[-1]
     # print(choice)
     
-    # index를 기준으로 데이터 받아오기
-    data = Maratron.objects.get(index = choice)
+    # id를 기준으로 데이터 받아오기
+    data = Maratron.objects.get(id = choice)
     print("data는 ", data)
     
     serialize_data = serialize('json', [data, ])
