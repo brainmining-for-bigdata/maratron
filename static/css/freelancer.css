@@ -216,11 +216,12 @@ header.masthead h2 {
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
   opacity: 0;
-  background-color: rgba(24, 188, 156, 0.9);
+  background-color: #d06459;
 }
 
 .audiostore .audiostore-item .audiostore-item-caption:hover {
   opacity: 1;
+  z-index: 1000;
 }
 
 .audiostore .audiostore-item .audiostore-item-caption .audiostore-item-caption-content {

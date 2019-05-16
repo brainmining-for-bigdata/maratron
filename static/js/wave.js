@@ -30,7 +30,6 @@ var Spectrum = WaveSurfer.create({
         var totalTime = Spectrum.getDuration(),
         currentTime = Spectrum.getCurrentTime(),
         remainingTime = totalTime - currentTime;
-        console.log(remainingTime.toFixed(2));
         document.getElementById('audio-time').innerText = Math.round(remainingTime).toFixed(1);
         if(remainingTime.toFixed(2) < 0.02) {
           Spectrum.stop();
