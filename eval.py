@@ -90,9 +90,10 @@ def run_eval(args):
     with open(args.audiobook, encoding='utf-8') as f:
       data = f.read()
     parts = data.strip().split('|')
-    title=parts[0]
-    author=parts[1]
-    text=parts[2]
+    category=parts[0]
+    title=parts[1]
+    author=parts[2]
+    text=parts[3]
     outpath= args.audiobook.replace(".txt", ".wav")
     with open(outpath, 'wb') as f:
       f.write(synth.synthesize(text))
