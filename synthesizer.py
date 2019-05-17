@@ -38,13 +38,17 @@ class Synthesizer:
     if cleaner_name == 'korean_cleaners':
       # hangul = re.compile('[^ ,.?ㄱ-ㅣ가-힣]+')
       # Ko_text = hangul.sub(' ', text) 
-      # sentence = text.split('.')
-      tokenizer = nltk.data.load('text/punkt/english.pickle')
-      text = text.replace(',','.').replace('?','.')
+      # Ko_text = text.replace(',','.').replace('?','.')
+      # texts = Ko_text.split('.')
+      # for i in texts:
+      #   sentence = i + '.'
+      # tokenizer = nltk.data.load('text/punkt/english.pickle')
+      tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
       sentence = tokenizer.tokenize(text)
 
     elif cleaner_name == 'english_cleaners':
-      tokenizer = nltk.data.load('text/punkt/english.pickle')
+      # tokenizer = nltk.data.load('text/punkt/english.pickle')
+      tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
       sentence = tokenizer.tokenize(text)
 
     for i in range(0,len(sentence)) :
