@@ -4,12 +4,14 @@ import re
 import pymysql
 import glob
 
+#docker사용시 'db'
+#else localhost
 class DBHelper:
   conn = None
   def __init__(self):
     self.db_connect()
   def db_connect(self):
-    self.conn = pymysql.connect(host="localhost", user="root", password="1234", db="maratron", charset="utf8")
+    self.conn = pymysql.connect(host='localhost', user="root", password="1234", db="maratron", charset="utf8mb4")
   def db_disconnect(self):
     if self.conn:
       self.conn.close()

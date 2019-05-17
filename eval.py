@@ -61,9 +61,9 @@ class Eval :
     
 
   def text(self, text, voice_choice):
-    print ('voice changed to  ', voice_choice)
-    print(self.voice_choice)
-    print(voice_choice)
+    #print ('voice changed to  ', voice_choice)
+    #print(self.voice_choice)
+    #print(voice_choice)
     if self.voice_choice != voice_choice : 
       self.reload_checkpoint (voice_choice)
     return (self.synth.synthesize(text))

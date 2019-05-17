@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3
+FROM python:3.6
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
