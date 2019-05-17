@@ -3,13 +3,19 @@ from django import forms
 
 # Create your models here.
 
-CATEGORY_CHOICES = (
+LANGUAGE_CHOICES = (
                     ('한국어','한국어'),
                     ('영어', '영어'),
 )
+
+CATEGORY_CHOICES = (
+                    ('poem','poem'),
+                    ('not_poem', 'not_poem'),
+)
 class Maratron(models.Model):
     id = models.AutoField(primary_key=True)
-    category = models.CharField(max_length=4, choices=CATEGORY_CHOICES, default="한국어")
+    language = models.CharField(max_length=4, choices=LANGUAGE_CHOICES, default="한국어")
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default="not_poem")
     author = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     contents = models.FileField(upload_to='contents', max_length=100)

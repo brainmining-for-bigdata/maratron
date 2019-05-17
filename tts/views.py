@@ -25,9 +25,7 @@ eval.init()
 @csrf_exempt # 403 error 제어
 def synthesize(request):
     print("view 도착")
-    # text = request.POST['text'].strip()
     text = request.POST.get('text',False)
-    # voiceType = request.POST['voiceType'].strip()
     voiceType = request.POST.get('voiceType')
     print(text)
     print(voiceType)
@@ -47,18 +45,13 @@ def synthesize(request):
     audio = {"audio":audio_file}
     '''
     audio = eval.text(text, voice_choice)
-    # print(type(audio))
-    # print(audio)
     audio = base64.b64encode(audio)
     return HttpResponse(audio, content_type="audio/wav")
 
 # audioStore
 def audioStore(request):
-    num = request.GET['id']
-    print(num)
-    # print(href)
-    choice = num
-    # print(choice)
+    choice = request.GET['id']
+    print("choice는 ", choice)
     
     # id를 기준으로 데이터 받아오기
     data = Maratron.objects.get(id = choice)
@@ -68,8 +61,5 @@ def audioStore(request):
     print("serialize는 ", serialize_data)
     serialize_data = serialize_data.strip('[]')
     print("strip은  ", serialize_data)
-    # serialize_data = json.loads(serialize_data)
-    # fields_data = serialize_data["fields"]
-    # print("fields는   ", fields_data)
 
     return HttpResponse(json.dumps(serialize_data), 'application/json')
