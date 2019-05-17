@@ -14,6 +14,7 @@ class Maratron(models.Model):
     title = models.CharField(max_length=50)
     contents = models.FileField(upload_to='contents', max_length=100)
     audio = models.FileField(upload_to='audio', max_length=100)
+    thumnail = models.FileField(upload_to='thumnail', max_length=100)
 
     def __str__(self):
         return  self.title

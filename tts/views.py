@@ -11,8 +11,10 @@ import base64
 
 
 def index(request):
-    print("index.......")
-    return render(request, 'tts/index.html')
+    audiobook_list = Maratron.objects.all()
+    print("index페이지")
+    print(audiobook_list)
+    return render(request, 'tts/index.html',{"audiobook_list":audiobook_list})
 
 #여자 목소리를 디폴트로 지정하여 모델 초기화 
 eval=Eval()
@@ -52,9 +54,10 @@ def synthesize(request):
 
 # audioStore
 def audioStore(request):
-    href = request.GET['href']
+    num = request.GET['id']
+    print(num)
     # print(href)
-    choice = href[-1]
+    choice = num
     # print(choice)
     
     # id를 기준으로 데이터 받아오기

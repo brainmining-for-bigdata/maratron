@@ -2,13 +2,17 @@ $(function () {
 
     function q(selector) { return document.querySelector(selector)}
 
+    $( '#1' ).addClass( 'poemtype' );
+    $( '#한국어' ).addClass( 'kortext' );
+    $( '#영어' ).addClass( 'engtext' );
+
     $('.audiostore-item').click(function () {
         // alert("ajax 코드");
-
+        alert($(this).attr("id"));
         $.ajax({
             url: '/tts/audioStore/',
             dataType: 'json',
-            data: { 'href': $(this).attr("href") },
+            data: { 'id': $(this).attr("id") },
             success: function (result) {
                 result = JSON.parse(result)
                 // console.log(result)

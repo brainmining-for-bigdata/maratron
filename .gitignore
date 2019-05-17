@@ -199,3 +199,4 @@ training/train.txt
 static/audio/output.wav
 LJlogs-tacotron/*.wav
 LJlogs-tacotron/events.out.tfevents.1554107595.class26
+tts/migrations/0002_maratron_thumnail.py
