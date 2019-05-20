@@ -1,40 +1,37 @@
-# maratron DB 생성 방법  
-```mysql> create database maratron;
-생성된 DB 확인
+
+# Team Project Overview
+* https://github.com/brainmining-for-bigdata/project-text2speech-blog
+
+* Text2Speech를 구현한 Django Project
+* Model : tacotron 사용
+
+## Project 실행 방법
+1. git clone  
+2. Database생성-  user: root pw: 1234 
+```
+mysql> create database maratron;
 mysql> show databases;
-Project Terminal
 ```
-## default table, tts App 내 DB 모델 생성 및 반영
-```(encore) C:\Users\user\Documents\maratron>python manage.py migrate
+3. default table, tts App 내 DB 모델 생성 및 반영  
+```
+python manage.py migrate
 반영 여부 확인
-(encore) C:\Users\user\Documents\maratron>python manage.py showmigrations tts
+python manage.py showmigrations tts
+강제로 migrate할 때 
+python manage.py migrate --fake tts zero
+
 superUser 계정 생성
-(encore) C:\Users\user\Documents\maratron>python manage.py createsuperuser
+python manage.py createsuperuser
 서버 구동하여 admin 페이지 정상 접속 여부 확인
-(encore) C:\Users\user\Documents\maratron>python manage.py runserver
+python manage.py runserver
 ```
+
+4. Python manage.py run 
+5. web browser 접속  
 http://127.0.0.1:8000/admin/
 
 
-# Team Project 
-Text2Speech를 구현한 Django Project
-Model : tacotron 사용
-
-### Reference
-* https://github.com/keithito/tacotron  
-* https://github.com/carpedm20/multi-speaker-tacotron-tensorflow
-
-### Dataset
-* 영어 UK (남자) 
-https://www.caito.de/2019/01/the-m-ailabs-speech-dataset/   
-* 영어 (여자) 
-https://keithito.com/LJ-Speech-Dataset/
-* 영어 남자
-https://librivox.org/a-history-of-california-the-spanish-period-by-charles-edward-chapman/
-* 한국어 여자
-https://www.kaggle.com/bryanpark/korean-single-speaker-speech-dataset
-
-### 
+### commands 
 
 ### Preprocess the data
 python preprocess.py --dataset ljspeech
@@ -42,11 +39,19 @@ python preprocess.py --dataset ljspeech
 ### Train a model
 python train.py
 
+### Continue training from the the checkpoint
+python train.py --restore_step=9000
+
 ### Monitor with Tensorboard
 tensorboard --logdir ~/tacotron/logs-tacotron
 
 ### Evaluate 
 python eval.py --checkpoint ~/tacotron/logs-tacotron/model.ckpt-185000
+
+### Make audio book
+python eval.py   --checkpoint  ./logs-tacotron-model/model.ckpt-64000 --cleaners korean_cleaners --audiobook ./audiobooks/이기적유전자.txt
+python eval.py   --checkpoint ./LJlogs-tacotron/model.ckpt-40000 --audiobook ./audiobooks/Secret.txt
+
 
 ### Run a server
 python manage.py runserver
