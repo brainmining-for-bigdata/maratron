@@ -31,7 +31,7 @@ python manage.py runserver
 http://127.0.0.1:8000/admin/
 
 
-### commands 
+## commands 
 
 ### Preprocess the data
 python preprocess.py --dataset ljspeech
@@ -48,10 +48,13 @@ tensorboard --logdir ~/tacotron/logs-tacotron
 ### Evaluate 
 python eval.py --checkpoint ~/tacotron/logs-tacotron/model.ckpt-185000
 
+
 ### Make audio book
 python eval.py   --checkpoint  ./logs-tacotron-model/model.ckpt-64000 --cleaners korean_cleaners --audiobook ./audiobooks/이기적유전자.txt
 python eval.py   --checkpoint ./LJlogs-tacotron/model.ckpt-40000 --audiobook ./audiobooks/Secret.txt
 
+### add audiobook into database
+python initdata.py
 
 ### Run a server
 python manage.py runserver
