@@ -6,8 +6,9 @@ from django.http import HttpResponse
 import librosa as lr
 from eval import Eval
 from django.core.serializers import serialize
-from . models import Maratron
+from .models import Maratron
 import base64
+from ttsProject.settings import MEDIA_URL
 
 
 def index(request):
@@ -53,12 +54,13 @@ def audioStore(request):
     print("choice는 ", choice)
     
     # id를 기준으로 데이터 받아오기
-    data = Maratron.objects.get(id = choice)
+    entry = Maratron.objects.get(id = choice)
+    data = entry.dic()
     print("data는 ", data)
-    
-    serialize_data = serialize('json', [data, ])
-    print("serialize는 ", serialize_data)
-    serialize_data = serialize_data.strip('[]')
-    print("strip은  ", serialize_data)
-
-    return HttpResponse(json.dumps(serialize_data), 'application/json')
+    data['contents'] = MEDIA_URL +  data['contents']
+    print(data['contents'])
+    data['audio'] = MEDIA_URL +  data['audio']
+    data['thumnail'] = MEDIA_URL +  data['thumnail']
+    print("수정된 data는 ", data)
+ 
+    return HttpResponse(json.dumps(data), 'application/json')

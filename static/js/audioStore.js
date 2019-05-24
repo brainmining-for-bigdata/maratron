@@ -13,11 +13,10 @@ $(function () {
             dataType: 'json',
             data: { 'id': $(this).attr("id") },
             success: function (result) {
-                result = JSON.parse(result)
-                title = result['fields']['title']
-                author = result['fields']['author']
-                contents = "/media/" + result['fields']['contents']
-                audio = "/media/" + result['fields']['audio']
+                title = result['title']
+                author = result['author']
+                contents = result['contents']
+                audio = result['audio']
                 var url = contents
                 $.get(url, function(str){
                     var results = str.split("\n");

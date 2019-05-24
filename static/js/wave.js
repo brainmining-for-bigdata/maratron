@@ -17,7 +17,7 @@ var Spectrum = WaveSurfer.create({
     Spectrum.seekTo(currentProgress);
   });
         
-  Spectrum.load("/static/audio/kor_version.wav");
+  Spectrum.load(kor_wave);
   
   var originalTime = "";
   Spectrum.on('ready', function () {
@@ -62,7 +62,7 @@ var Spectrum2 = WaveSurfer.create({
     Spectrum2.seekTo(currentProgress);
   });
         
-  Spectrum2.load("/static/audio/eng_version.wav");
+  Spectrum2.load(eng_wave);
   
 
   var originalTime2 = "";

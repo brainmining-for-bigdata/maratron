@@ -24,3 +24,9 @@ class Maratron(models.Model):
 
     def __str__(self):
         return  self.title
+    def dic(self) :
+        fields = ['id', 'language', 'category', 'author','title', 'contents', 'audio', 'thumnail' ]
+        result = {}
+        for field in fields:
+            result[field] = self.__dict__[field]
+        return result
