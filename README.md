@@ -8,8 +8,9 @@
 ## Project 실행 방법
 1. git clone  
 2. Database생성-  user: root pw: 1234 
+* database생성시 반드시 **character set을 지정해야 함** 
 ```
-mysql> create database maratron;
+mysql> create database maratron character set utf8
 mysql> show databases;
 ```
 3. default table, tts App 내 DB 모델 생성 및 반영  
