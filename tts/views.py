@@ -16,9 +16,8 @@ def index(request):
     print(audiobook_list)
     return render(request, 'tts/index.html',{"audiobook_list":audiobook_list})
 
-#여자 목소리를 디폴트로 지정하여 모델 초기화 
+#여자 영어 목소리를 디폴트로 지정하여 모델 초기화 
 eval=Eval()
-eval.init()
 
 # Ajax
 # textToSpeech

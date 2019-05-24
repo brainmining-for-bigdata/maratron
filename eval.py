@@ -19,7 +19,9 @@ from synthesizer import Synthesizer
 
 
 class Eval :
+  initialized = False
   def init(self):
+    self.initialized = True
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
     hparams.parse('')
     print(hparams_debug_string())
@@ -61,9 +63,8 @@ class Eval :
     
 
   def text(self, text, voice_choice):
-    #print ('voice changed to  ', voice_choice)
-    #print(self.voice_choice)
-    #print(voice_choice)
+    if not self.initialized :
+      self.init()
     if self.voice_choice != voice_choice : 
       self.reload_checkpoint (voice_choice)
     return (self.synth.synthesize(text))
