@@ -11,7 +11,10 @@ class DBHelper:
   def __init__(self):
     self.db_connect()
   def db_connect(self):
-    self.conn = pymysql.connect(host='localhost', user="root", password="1234", db="maratron", charset="utf8mb4")
+    if os.getenv('DOCKER_APP', None):
+      self.conn = pymysql.connect(host='db', user="root", password="1234", db="maratron", charset="utf8mb4")
+    else :
+      self.conn = pymysql.connect(host='localhost', user="root", password="1234", db="maratron", charset="utf8mb4")
   def db_disconnect(self):
     if self.conn:
       self.conn.close()

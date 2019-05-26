@@ -9,7 +9,7 @@ from KoTextProcessing.HangulUtils import hangul_to_sequence
 from util import audio
 import re
 import sys
-import nltk
+from nltk.tokenize import sent_tokenize
 
 
 
@@ -43,14 +43,16 @@ class Synthesizer:
       # for i in texts:
       #   sentence = i + '.'
       # tokenizer = nltk.data.load('text/punkt/english.pickle')
-      tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-      sentence = tokenizer.tokenize(text)
-
+      # tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+      # sentence = tokenizer.tokenize(text)
+      sentences = re.split(r"[.!?]", text)
+      sentence = [sent.strip(" ") for sent in sentences]
     elif cleaner_name == 'english_cleaners':
       # tokenizer = nltk.data.load('text/punkt/english.pickle')
-      tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-      sentence = tokenizer.tokenize(text)
-
+      # tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+      # sentence = tokenizer.tokenize(text)
+      sentences = re.split(r"[.!?]", text)
+      sentence = [sent.strip(" ") for sent in sentences]
     for i in range(0,len(sentence)) :
       if len(sentence[i]) == 0 or sentence[i] == ' ' :
         del sentence[i]

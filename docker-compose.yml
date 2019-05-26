@@ -5,8 +5,8 @@ services:
     ports:
       - "3000:8000"
     volumes:
-      - .:/code
-      - ./nginx:/etc/nginx/conf.d
+      - /d/program/git/maratron:/code
+      - /d/program/git/maratron/nginx:/etc/nginx/conf.d
     depends_on: 
      - app
   db:
@@ -19,20 +19,23 @@ services:
       #MYSQL_USER: #volume error
       MYSQL_PASSWORD: '1234'
       MYSQL_ROOT_PASSWORD: '1234'  
-    #command: --innodb_use_native_aio=0
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb_use_native_aio=0
     restart: always
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
-      - ./mysql:/var/lib/mysql
+      - /d/program/git/maratron/mysql:/var/lib/mysql
   app:
     image: django_image
     container_name: django_server
     # replace folder path with your folder specified in virtualbox share folder name
     volumes:
-      - .:/code
-    build: .
-    command: gunicorn ttsProject.wsgi:application --bind 0.0.0.0:8000 --timeout=300 --workers=2
+      - /d/program/git/maratron:/code
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DOCKER_APP=django
+    command: gunicorn ttsProject.wsgi:application --bind 0.0.0.0:8000 --timeout=1000 --workers=2
     expose:
       - "8000"
     depends_on:
