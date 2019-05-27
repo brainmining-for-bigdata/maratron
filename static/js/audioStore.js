@@ -16,8 +16,10 @@ $(function () {
                 result = JSON.parse(result)
                 title = result['fields']['title']
                 author = result['fields']['author']
-                contents = "/media/" + result['fields']['contents']
-                audio = "/media/" + result['fields']['audio']
+                // contents = "/media/" + result['fields']['contents']
+                // audio = "/media/" + result['fields']['audio']
+                contents = "https://storage.googleapis.com/maradb/" + result['fields']['contents']
+                audio = "https://storage.googleapis.com/maradb/" + result['fields']['audio']
                 var url = contents
                 $.get(url, function(str){
                     var results = str.split("\n");

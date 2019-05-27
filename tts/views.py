@@ -24,7 +24,7 @@ eval.init()
 # textToSpeech
 @csrf_exempt # 403 error 제어
 def synthesize(request):
-    print("view 도착")
+    # print("view 도착")
     text = request.POST.get('text',False)
     voiceType = request.POST.get('voiceType')
     print(text)

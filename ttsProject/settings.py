@@ -24,11 +24,11 @@ SECRET_KEY = 'soy=46#3$vxz00s=dgu_&v2er#7dv^q@a_+0df*_#5e340rpj^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #docker
-# DEBUG = False
-# ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 #local
-DEBUG = True
-ALLOWED_HOSTS = []
+# DEBUG = True
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -122,14 +122,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'maradb'
+GS_DEFAULT_ACL = 'publicRead'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# local
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
+# STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
+
+# docker
 STATIC_URL = '/static/'
+# STATIC_URL="http://storage.googleapis.com/maratron/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

@@ -159,7 +159,8 @@
             </div>
             <div class="entry">
               <h3 id="{{audiobook.language}}" class="engtext">{{audiobook.title}}</h3>
-              <img class="img-fluid" src="/media/{{audiobook.thumnail}}" alt="">
+              {% comment %} <img class="img-fluid" src="/media/{{audiobook.thumnail}}" alt=""> {% endcomment %}
+              <img class="img-fluid" src="https://storage.googleapis.com/maradb/{{audiobook.thumnail}}" alt="">
             </div>
           </a>
         </div>  

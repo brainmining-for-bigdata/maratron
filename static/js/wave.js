@@ -17,8 +17,8 @@ var Spectrum = WaveSurfer.create({
     Spectrum.seekTo(currentProgress);
   });
         
-  Spectrum.load("/static/audio/kor_version.wav");
-  
+  // Spectrum.load("/static/audio/kor_version.wav");
+  Spectrum.load("https://storage.googleapis.com/maratron/static/audio/kor_version.wav");
   var originalTime = "";
   Spectrum.on('ready', function () {
     originalTime = Spectrum.getDuration().toFixed(1);
@@ -61,10 +61,11 @@ var Spectrum2 = WaveSurfer.create({
   
     Spectrum2.seekTo(currentProgress);
   });
-        
-  Spectrum2.load("/static/audio/eng_version.wav");
-  
 
+
+  // Spectrum.load("/static/audio/eng_version.wav");      
+  Spectrum2.load("https://storage.googleapis.com/maratron/static/audio/eng_version.wav");
+  
   var originalTime2 = "";
   Spectrum2.on('ready', function () {
     originalTime2 = Spectrum2.getDuration().toFixed(1);
