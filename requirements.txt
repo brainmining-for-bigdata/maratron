@@ -14,7 +14,7 @@ mysqlclient==1.4.2.post1
 
 gunicorn==19.9.0
 django-extensions==2.1.6
-nltk==3.4
+nltk==3.4.5
 pymysql
 
 
