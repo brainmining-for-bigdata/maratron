@@ -9,7 +9,7 @@ numpy==1.16.2
 scipy==1.2.1
 tqdm==4.31.1
 Unidecode==1.0.23
-Django==2.2
+Django==2.2.8
 mysqlclient==1.4.2.post1
 
 gunicorn==19.9.0
