@@ -5,7 +5,7 @@ falcon==1.2.0
 inflect==0.2.5
 librosa==0.6.3
 matplotlib==2.0.2
-numpy==1.16.2
+numpy==1.22.0
 scipy==1.2.1
 tqdm==4.31.1
 Unidecode==1.0.23
